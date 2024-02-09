@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+.mySpinner {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  border: 0.15rem solid #ccc;
+  border-top-color: #007bff;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

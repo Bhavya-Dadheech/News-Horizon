@@ -26,11 +26,30 @@ export class NewsItem extends Component {
           alt="..."
         />
         <div className="card-body">
-          <h5 className="card-title" style={{ ...this.state.customStyle, height: "4rem", WebkitLineClamp: "3" }}>
-            {this.props.title}
+          <span
+            className="position-absolute top-0 translate-middle badge rounded-pill bg-danger"
+            style={{ left: "80%", zIndex: "1" }}
+          >
+            {this.props.source}
+            <span className="visually-hidden">unread messages</span>
+          </span>
+          <h5 className="card-title">
+            <span>{this.props.title}</span>
+            {/* to align UI uncomment below line*/}
+            {/* <span style={{ ...this.state.customStyle, height: "4rem", WebkitLineClamp: "3" }}>{this.props.title}</span> */}
           </h5>
-          <p className="card-text" style={{ ...this.state.customStyle, height: "5rem", WebkitLineClamp: "4" }}>
+          <p className="card-text">
             {this.props.description ? this.props.description : "Read the article for full description."}
+          </p>
+          {/* to align UI uncomment below line*/}
+          {/* <p className="card-text" style={{ ...this.state.customStyle, height: "5rem", WebkitLineClamp: "4" }}>
+            {this.props.description ? this.props.description : "Read the article for full description."}
+          </p> */}
+          <label className="card-text">
+            <small className="text-muted">By {this.props.author ? this.props.author : "Unknown"}</small>
+          </label>
+          <p className="card-text" style={{ marginBottom: "0px !important" }}>
+            <small className="text-muted">{new Date(this.props.date).toGMTString()}</small>
           </p>
           {this.props.description === "[Removed]" ? (
             <div style={{ padding: "3px 0px 3px 0px" }}>&nbsp;</div>

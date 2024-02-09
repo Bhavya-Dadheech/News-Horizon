@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export class Navbar extends Component {
   render() {
@@ -24,44 +25,56 @@ export class Navbar extends Component {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <Link className="nav-link" aria-current="page" to="/home">
+                  <NavLink to="/home" className={({ isActive }) => (isActive ? "nav-link text-primary" : "nav-link")}>
                     Home
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/about">
+                  <NavLink to="/about" className={({ isActive }) => (isActive ? "nav-link text-primary" : "nav-link")}>
                     About
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/business">
+                  <NavLink
+                    to="/Business"
+                    className={({ isActive }) => (isActive ? "nav-link text-primary" : "nav-link")}
+                  >
                     Business
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/entertainment">
+                  <NavLink
+                    className={({ isActive }) => (isActive ? "nav-link text-primary" : "nav-link")}
+                    to="/entertainment"
+                  >
                     Entertainment
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/health">
+                  <NavLink className={({ isActive }) => (isActive ? "nav-link text-primary" : "nav-link")} to="/health">
                     Health
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/science">
+                  <NavLink
+                    className={({ isActive }) => (isActive ? "nav-link text-primary" : "nav-link")}
+                    to="/science"
+                  >
                     Science
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/sports">
+                  <NavLink className={({ isActive }) => (isActive ? "nav-link text-primary" : "nav-link")} to="/sports">
                     Sports
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/technology">
+                  <NavLink
+                    className={({ isActive }) => (isActive ? "nav-link text-primary" : "nav-link")}
+                    to="/technology"
+                  >
                     Technology
-                  </Link>
+                  </NavLink>
                 </li>
               </ul>
             </div>
