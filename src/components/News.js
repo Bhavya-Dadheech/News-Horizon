@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NewsItem from "./NewsItem";
 import MySpinner from "./MySpinner";
 import PropTypes from "prop-types";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export class News extends Component {
   static defaultProps = {
@@ -25,12 +26,13 @@ export class News extends Component {
     this.state = {
       articles: [],
       loading: false,
-      page: 1
+      page: 1,
+      totalResults: 0
     };
     if (this.props.category !== "general") {
       document.title = `${this.capitalizeFirstLetter(this.props.category)} - News Horizon`;
     } else {
-      document.title = "NewsApp - Get your daily dose of news free!";
+      document.title = "News Horizon - Get your daily dose of news free!";
     }
   }
 
@@ -66,6 +68,17 @@ export class News extends Component {
     this.updateNews();
   };
 
+  fetchData = async (page) => {
+    this.setState({ page: this.state.page + 1 });
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=fbc5d432321947bbb9cf0d54ca02289f&page=${page}&pageSize=${this.props.pageSize}`;
+    let data = await fetch(url);
+    let parsedData = await data.json();
+    this.setState({
+      articles: this.state.articles.concat(parsedData.articles),
+      totalResults: parsedData.totalResults
+    });
+  };
+
   render() {
     return (
       <div className="container my-2">
@@ -74,7 +87,9 @@ export class News extends Component {
         </h2>
         {this.state.loading && <MySpinner />}
         <div className="row">
-          {!this.state.loading &&
+          {/* for no infinite scroll */}
+          {/* {!this.state.loading &&
+            this.state.articles &&
             this.state.articles.map((e) => {
               return (
                 <div className="col-md-3 my-2" key={e.url}>
@@ -89,9 +104,44 @@ export class News extends Component {
                   />
                 </div>
               );
-            })}
+            })} */}
+          {!this.state.loading && this.state.articles && (
+            <InfiniteScroll
+              style={{ overflow: "hidden" }}
+              dataLength={this.state.articles.length}
+              next={() => {
+                this.fetchData(this.state.page + 1);
+              }}
+              hasMore={this.state.articles.length !== this.state.totalResults}
+              loader={<MySpinner />}
+              endMessage={
+                <h5 className="text-center my-2 text-secondary">yay! you have seen it all.</h5>
+              }
+            >
+              <div className="container">
+                <div className="row">
+                  {this.state.articles.map((element) => {
+                    return (
+                      <div className="col-md-3" key={element.url}>
+                        <NewsItem
+                          title={element.title ? element.title : ""}
+                          description={element.description ? element.description : ""}
+                          imageUrl={element.urlToImage}
+                          newsUrl={element.url}
+                          author={element.author}
+                          date={element.publishedAt}
+                          source={element.source.name}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </InfiniteScroll>
+          )}
         </div>
-        <div className="container d-flex justify-content-between">
+        {/* for no infinite scroll */}
+        {/* <div className="container d-flex justify-content-between">
           <button
             type="button"
             disabled={this.state.page === 1 ? true : false}
@@ -108,7 +158,7 @@ export class News extends Component {
           >
             Next &rarr;
           </button>
-        </div>
+        </div> */}
       </div>
     );
   }

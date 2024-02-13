@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Navbar from "./components/Navbar";
 import News from "./components/News";
 import { Routes, Route } from "react-router-dom";
+import About from "./components/About";
 export default class App extends Component {
   pageSize = 16;
   render() {
@@ -20,11 +21,7 @@ export default class App extends Component {
             path="/home"
             element={<News key="general" pageSize={this.pageSize} country="in" category="general" />}
           ></Route>
-          <Route
-            exact
-            path="/about"
-            element={<News key="general" pageSize={this.pageSize} country="in" category="general" />}
-          ></Route>
+          <Route exact path="/about" element={<About />}></Route>
           <Route
             exact
             path="/business"
