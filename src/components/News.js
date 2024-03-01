@@ -37,17 +37,21 @@ export class News extends Component {
   }
 
   async updateNews() {
-    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=fbc5d432321947bbb9cf0d54ca02289f&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    this.props.setProgress(10);
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     this.setState({
       loading: true
     });
     let data = await fetch(url);
+    this.props.setProgress(30);
     let parsedData = await data.json();
+    this.props.setProgress(50);
     this.setState({
       articles: parsedData.articles,
       totalResults: parsedData.totalResults,
       loading: false
     });
+    this.props.setProgress(100);
   }
 
   async componentDidMount() {
@@ -69,14 +73,16 @@ export class News extends Component {
   };
 
   fetchData = async (page) => {
-    this.setState({ page: this.state.page + 1 });
-    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=fbc5d432321947bbb9cf0d54ca02289f&page=${page}&pageSize=${this.props.pageSize}`;
-    let data = await fetch(url);
-    let parsedData = await data.json();
-    this.setState({
-      articles: this.state.articles.concat(parsedData.articles),
-      totalResults: parsedData.totalResults
-    });
+    setTimeout(async () => {
+      this.setState({ page: this.state.page + 1 });
+      const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${page}&pageSize=${this.props.pageSize}`;
+      let data = await fetch(url);
+      let parsedData = await data.json();
+      this.setState({
+        articles: this.state.articles.concat(parsedData.articles),
+        totalResults: parsedData.totalResults
+      });
+    }, 1000);
   };
 
   render() {
@@ -114,11 +120,9 @@ export class News extends Component {
               }}
               hasMore={this.state.articles.length !== this.state.totalResults}
               loader={<MySpinner />}
-              endMessage={
-                <h5 className="text-center my-2 text-secondary">yay! you have seen it all.</h5>
-              }
+              endMessage={<h5 className="text-center my-2 text-secondary">yay! you have seen it all.</h5>}
             >
-              <div className="container">
+              <div className="container py-2">
                 <div className="row">
                   {this.state.articles.map((element) => {
                     return (

@@ -19,6 +19,9 @@ export class NewsItem extends Component {
   render() {
     return (
       <div className="card my-1">
+        <div>
+          <span className="badge rounded-pill bg-danger" style={{display:"flex",justifyContent:"flex-end",position:"absolute",right:"0",top:"-10px"}}>{this.props.source}</span>
+        </div>
         <img
           src={this.props.imageUrl ? this.props.imageUrl : "/news.jpg"}
           className="card-img-top"
@@ -26,13 +29,6 @@ export class NewsItem extends Component {
           alt="..."
         />
         <div className="card-body">
-          <span
-            className="position-absolute top-0 translate-middle badge rounded-pill bg-danger"
-            style={{ left: "80%", zIndex: "1" }}
-          >
-            {this.props.source}
-            <span className="visually-hidden">unread messages</span>
-          </span>
           <h5 className="card-title">
             <span>{this.props.title}</span>
             {/* to align UI uncomment below line*/}
