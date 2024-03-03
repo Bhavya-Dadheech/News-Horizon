@@ -42,7 +42,21 @@ export default class App extends Component {
     }
   };
 
-  // onLoaderFinished={() => setProgress(0)}
+  componentDidMount() {
+    if (this.props.mode === "light") {
+      document.body.style.backgroundColor = "white";
+    } else {
+      document.body.style.backgroundColor = "#3A3B3C";
+    }
+  }
+
+  // componentDidUpdate() {
+  //   if (this.props.mode === "light") {
+  //     document.body.style.backgroundColor = "white";
+  //   } else {
+  //     document.body.style.backgroundColor = "#3A3B3C";
+  //   }
+  // }
   render() {
     return (
       <div>
