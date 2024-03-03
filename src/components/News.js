@@ -58,6 +58,13 @@ export class News extends Component {
     this.updateNews();
   }
 
+  async componentDidUpdate(prevProps) {
+    if (prevProps.country !== this.props.country) {
+      // Country prop has changed, update news
+      await this.updateNews();
+    }
+  }
+
   handlePrevClick = async () => {
     this.setState({
       page: this.state.page - 1
@@ -88,7 +95,7 @@ export class News extends Component {
   render() {
     return (
       <div className="container my-2">
-        <h2 className="text-center my-4">
+        <h2 className="text-center my-4" style={this.props.mode === "light" ? { color: "black" } : { color: "white" }}>
           News Horizon - Top {this.capitalizeFirstLetter(this.props.category)} Headlines
         </h2>
         {this.state.loading && <MySpinner />}
@@ -128,6 +135,7 @@ export class News extends Component {
                     return (
                       <div className="col-md-3" key={element.url}>
                         <NewsItem
+                          mode={this.props.mode}
                           title={element.title ? element.title : ""}
                           description={element.description ? element.description : ""}
                           imageUrl={element.urlToImage}

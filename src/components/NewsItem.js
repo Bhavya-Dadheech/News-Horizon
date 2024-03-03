@@ -20,7 +20,12 @@ export class NewsItem extends Component {
     return (
       <div className="card my-1">
         <div>
-          <span className="badge rounded-pill bg-danger" style={{display:"flex",justifyContent:"flex-end",position:"absolute",right:"0",top:"-10px"}}>{this.props.source}</span>
+          <span
+            className="badge rounded-pill bg-danger"
+            style={{ display: "flex", justifyContent: "flex-end", position: "absolute", right: "0", top: "-10px" }}
+          >
+            {this.props.source}
+          </span>
         </div>
         <img
           src={this.props.imageUrl ? this.props.imageUrl : "/news.jpg"}
@@ -28,7 +33,10 @@ export class NewsItem extends Component {
           style={{ height: "12rem" }}
           alt="..."
         />
-        <div className="card-body">
+        <div
+          className={`card-body bg-${this.props.mode}`}
+          style={this.props.mode === "light" ? { color: "black" } : { color: "white", border: ".5px solid white" }}
+        >
           <h5 className="card-title">
             <span>{this.props.title}</span>
             {/* to align UI uncomment below line*/}
@@ -42,10 +50,14 @@ export class NewsItem extends Component {
             {this.props.description ? this.props.description : "Read the article for full description."}
           </p> */}
           <label className="card-text">
-            <small className="text-muted">By {this.props.author ? this.props.author : "Unknown"}</small>
+            <small className={this.props.mode === "light" ? "text-muted" : "text-white-50"}>
+              By {this.props.author ? this.props.author : "Unknown"}
+            </small>
           </label>
-          <p className="card-text" style={{ marginBottom: "0px !important" }}>
-            <small className="text-muted">{new Date(this.props.date).toGMTString()}</small>
+          <p className="card-text">
+            <small className={this.props.mode === "light" ? "text-muted" : "text-white-50"}>
+              {new Date(this.props.date).toGMTString()}
+            </small>
           </p>
           {this.props.description === "[Removed]" ? (
             <div style={{ padding: "3px 0px 3px 0px" }}>&nbsp;</div>
