@@ -22,7 +22,7 @@ export class Navbar extends Component {
   render() {
     return (
       <div>
-        <nav className={`navbar navbar-expand-lg bg-${this.props.mode}`}>
+        <nav className={`navbar fixed-top navbar-expand-lg bg-${this.props.mode}`}>
           <div className="container-fluid">
             <Link
               className="navbar-brand"

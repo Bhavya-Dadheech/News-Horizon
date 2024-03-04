@@ -79,10 +79,10 @@ export class News extends Component {
     this.updateNews();
   };
 
-  fetchData = async (page) => {
+  fetchData = async (pg) => {
     setTimeout(async () => {
       this.setState({ page: this.state.page + 1 });
-      const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${page}&pageSize=${this.props.pageSize}`;
+      const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${pg}&pageSize=${this.props.pageSize}`;
       let data = await fetch(url);
       let parsedData = await data.json();
       this.setState({
@@ -94,7 +94,7 @@ export class News extends Component {
 
   render() {
     return (
-      <div className="container my-2">
+      <div className="container" style={{ marginTop: "5rem" }}>
         <h2 className="text-center my-4" style={this.props.mode === "light" ? { color: "black" } : { color: "white" }}>
           News Horizon - Top {this.capitalizeFirstLetter(this.props.category)} Headlines
         </h2>
@@ -127,7 +127,11 @@ export class News extends Component {
               }}
               hasMore={this.state.articles.length !== this.state.totalResults}
               loader={<MySpinner />}
-              endMessage={<h5 className="text-center my-2 text-secondary">yay! you have seen it all.</h5>}
+              endMessage={
+                <h5 className={`text-center my-2 ${this.props.mode === "light" ? "text-secondary" : "text-white-50"}`}>
+                  yay! you have seen it all.
+                </h5>
+              }
             >
               <div className="container py-2">
                 <div className="row">

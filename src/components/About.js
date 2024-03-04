@@ -3,10 +3,7 @@ import React, { Component } from "react";
 export class About extends Component {
   render() {
     return (
-      <div
-        className="container py-3 rounded"
-        // style={myStyle}
-      >
+      <div className="container py-3 rounded">
         <h1 style={this.props.mode === "light" ? { color: "black" } : { color: "white" }}>About Us</h1>
         <div className="accordion" id="accordionExample">
           <div className="accordion-item">
@@ -19,7 +16,6 @@ export class About extends Component {
                 data-bs-target="#collapseOne"
                 aria-expanded="true"
                 aria-controls="collapseOne"
-                // style={myStyle}
               >
                 <strong>📰 Welcome to News Horizon - Your Gateway to Global Updates!</strong>
               </button>
@@ -46,7 +42,6 @@ export class About extends Component {
                 data-bs-target="#collapseTwo"
                 aria-expanded="false"
                 aria-controls="collapseTwo"
-                // style={myStyle}
               >
                 <strong>🌐 Categories for Every Interest</strong>
               </button>
@@ -73,7 +68,6 @@ export class About extends Component {
                 data-bs-target="#collapseThree"
                 aria-expanded="false"
                 aria-controls="collapseThree"
-                // style={myStyle}
               >
                 <strong>🌍 Global Perspectives, Local Relevance</strong>
               </button>
@@ -82,7 +76,6 @@ export class About extends Component {
               <div
                 className="accordion-body"
                 style={this.props.mode === "light" ? { color: "black" } : { color: "white", background: "#3A3B3C" }}
-                // style={myStyle}
               >
                 Tailor your news feed by selecting your country of interest. Get a personalized blend of global and
                 local news that matters to you, ensuring that you are always in the loop with the stories that impact
@@ -100,7 +93,6 @@ export class About extends Component {
                 data-bs-target="#collapseFour"
                 aria-expanded="false"
                 aria-controls="collapseFour"
-                // style={myStyle}
               >
                 <strong>🌙 Dark Mode - Illuminate Your News Experience</strong>
               </button>
@@ -109,10 +101,9 @@ export class About extends Component {
               <div
                 className="accordion-body"
                 style={this.props.mode === "light" ? { color: "black" } : { color: "white", background: "#3A3B3C" }}
-                // style={myStyle}
               >
                 Immerse yourself in a comfortable and visually pleasing reading experience with our Dark Mode feature.
-                Whether it's late-night scrolling or preference for a sleek aesthetic, [News App Name] adapts to your
+                Whether it's late-night scrolling or preference for a sleek aesthetic, News Horizon adapts to your
                 reading style.
               </div>
             </div>
@@ -127,7 +118,6 @@ export class About extends Component {
                 data-bs-target="#collapseFive"
                 aria-expanded="false"
                 aria-controls="collapseFive"
-                // style={myStyle}
               >
                 <strong>📲 Free Access, Premium Quality</strong>
               </button>
@@ -136,7 +126,6 @@ export class About extends Component {
               <div
                 className="accordion-body"
                 style={this.props.mode === "light" ? { color: "black" } : { color: "white", background: "#3A3B3C" }}
-                // style={myStyle}
               >
                 News Horizon believes in making information accessible to all. Enjoy free access to a wealth of news
                 content without any subscription fees. Stay informed without compromise.
