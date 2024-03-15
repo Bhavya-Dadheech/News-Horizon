@@ -8,7 +8,8 @@ import LoadingBar from "react-top-loading-bar";
 
 export default class App extends Component {
   pageSize = 16;
-  apiKey = process.env.REACT_APP_NEWS_API;
+  // apiKey = process.env.REACT_APP_NEWS_API;
+  apiKey = "fbc5d432321947bbb9cf0d54ca02289f";
 
   state = {
     progress: 0,
@@ -82,7 +83,7 @@ export default class App extends Component {
                 category="general"
               />
             }
-          ></Route>
+          />
           <Route
             exact
             path="/home"
@@ -97,8 +98,8 @@ export default class App extends Component {
                 category="general"
               />
             }
-          ></Route>
-          <Route exact path="/about" element={<About mode={this.state.mode} />}></Route>
+          />
+          <Route exact path="/about" element={<About mode={this.state.mode} />} />
           <Route
             exact
             path="/business"
